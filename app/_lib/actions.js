@@ -49,3 +49,5 @@ export async function updateGuestProfile(formData) {
     //! so this make sure that the profile page is revalidated after updating the profile (revalidating means fetching the new data from the server and updating the cache with the new data)
     revalidatePath("/account/profile"); //! revalidate the profile page to reflect the changes
 }
+
+//! similarly we can create an action to update booking details
