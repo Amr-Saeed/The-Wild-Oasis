@@ -51,3 +51,21 @@ export async function updateGuestProfile(formData) {
 }
 
 //! similarly we can create an action to update booking details
+
+export async function deleteReservation(bookingId) {
+    const session = await auth();
+    if (!session?.user) {
+        throw new Error("Unauthorized");
+    }
+
+    const { error } = await supabase.from('bookings').delete().eq('id', bookingId);
+
+    if (error) {
+        console.error(error);
+        throw new Error('Booking could not be deleted');
+    }
+
+    //! and always rememebr if you need the ui to reflect the changes after performing a server action you need to revalidate the path
+    revalidatePath("/account/reservations");
+
+}
