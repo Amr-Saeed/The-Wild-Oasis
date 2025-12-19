@@ -1,0 +1,1 @@
+export { GET, POST } from "@/app/_lib/auth"; //! here we import and export the handlers directly at the same time
